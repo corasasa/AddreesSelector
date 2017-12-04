@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="text_14sp">
+    <style name="text_14sp_tab">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">14sp</item>
@@ -16,8 +16,18 @@
         <item name="android:clickable">true</item>
         <item name="android:padding">10dp</item>
         <item name="android:textColor">@drawable/select_text_red</item>
-
+    </style>
+    <style name="defind_Dialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:windowAnimationStyle">@style/dialog_anim</item>
     </style>
 
-
+    <style name="dialog_anim" parent="Animation.AppCompat.Dialog">
+        <item name="android:windowEnterAnimation">@anim/addr_dialog_in</item>
+        <item name="android:windowExitAnimation">@anim/addr_dialog_out</item>
+    </style>
 </resources>
