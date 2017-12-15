@@ -15,6 +15,7 @@ import java.util.List;
 
 public class DataAdapter extends BaseAdapter {
     private List<String> mData;
+    private int mSelectPosition = -1;
 
     @Override
     public int getCount() {
@@ -34,12 +35,37 @@ public class DataAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
-        if (convertView==null){
+        if (convertView == null) {
+            holder = new ViewHolder();
             convertView = View.inflate(parent.getContext(), R.layout.item_list, null);
-        }else {
-
+            holder.tv_name = (TextView) convertView.findViewById(R.id.tv_name);
+            holder.iv_select = (ImageView) convertView.findViewById(R.id.iv_select);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
         }
-        return null;
+
+        String name = mData.get(position);
+        holder.tv_name.setText(name);
+        holder.iv_select.setVisibility(position == mSelectPosition ? View.VISIBLE : View.GONE);
+        return convertView;
+    }
+
+    public void setData(List<String> data) {
+        this.mData = data;
+        this.notifyDataSetChanged();
+    }
+
+    public String getSelectName() {
+        if (mSelectPosition == -1) {
+            return "";
+        }
+        return mData == null ? "" : mData.get(mSelectPosition);
+    }
+
+    public void setSelectPosition(int selectPosition) {
+        this.mSelectPosition = selectPosition;
+        this.notifyDataSetChanged();
     }
 
     static class ViewHolder{
